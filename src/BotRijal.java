@@ -19,6 +19,12 @@ class MatkulData {
     String name;
 }
 public class BotRijal {
+
+    /**
+     * Method to simulate the filling of IRS forms with dummy data.
+     *
+     * @param driver The WebDriver instance used to interact with the web application.
+     */
     private static void dummyChecker(WebDriver driver){
 
         driver.navigate().to("file:///Users/rijal/Documents/SIAK%20Automation/Simulasi%20IRS/Pengisian%20IRS.htm");
@@ -31,10 +37,6 @@ public class BotRijal {
         try {
             while (true) {
                 Actions mouse = new Actions(driver);
-//                WebElement IrsDropdown = driver.findElement(By.xpath("//*[text()='IRS']"));
-//                mouse.moveToElement(IrsDropdown).perform();
-//                WebElement IrsMenu = driver.findElement(By.xpath("//*[text()='Isi/Ubah IRS']"));
-//                mouse.moveToElement(IrsMenu).click().perform();
                 System.out.println("masuk edit");
                 for (String[] m : matkul) {
                     Thread.sleep(100);
@@ -58,6 +60,13 @@ public class BotRijal {
         }
 
     }
+
+    /**
+     * Reads the MatkulData from a JSON file and returns a list of MatkulData objects.
+     *
+     * @param filePath The file path to the JSON file containing the MatkulData.
+     * @return A list of MatkulData objects read from the JSON file.
+     */
     private static List<MatkulData> readMatkulDataFromFile(String filePath) {
         List<MatkulData> matkulList = null;
         try (FileReader reader = new FileReader(filePath)) {
@@ -72,6 +81,12 @@ public class BotRijal {
         return matkulList;
     }
 
+    /**
+     * Loads properties from a properties file and returns a Properties object.
+     *
+     * @param filePath The file path to the properties file.
+     * @return A Properties object containing the properties loaded from the file.
+     */
     private static Properties loadPropertiesFromFile(String filePath) {
         Properties properties = new Properties();
         try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
