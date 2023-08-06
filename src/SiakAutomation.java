@@ -18,7 +18,7 @@ class MatkulData {
     String code;
     String name;
 }
-public class BotRijal {
+public class SiakAutomation {
 
     /**
      * Method to simulate the filling of IRS forms with dummy data.
@@ -101,6 +101,7 @@ public class BotRijal {
 
     public static void main(String[] args) throws InterruptedException {
         int i;
+        int retry = 0;
         System.setProperty("webdriver.firefox.whitelistedIps", "0.0.0.0");
         // Instantiate a SafariDriver class.
         WebDriver driver = new FirefoxDriver();
@@ -115,6 +116,10 @@ public class BotRijal {
         // Get the username and password from the properties
         String username = properties.getProperty("username");
         String password = properties.getProperty("password");
+
+        String jsonFilePath = "src/matkul_data.json";
+        List<MatkulData> matkulList = readMatkulDataFromFile(jsonFilePath);
+
 
         for(i = 0; i<1; i++) {
             try{
@@ -138,10 +143,9 @@ public class BotRijal {
         /*=====================================ISI MK =================================================*/
         Thread.sleep(500);
         driver.navigate().to("https://academic.ui.ac.id/main/CoursePlan/CoursePlanEdit");
-        String jsonFilePath = "src/matkul_data.json";
-        List<MatkulData> matkulList = readMatkulDataFromFile(jsonFilePath);
 
         while(true) {
+            System.out.println("Retry ke-" + retry);
             try{
                 driver.navigate().to("https://academic.ui.ac.id/main/CoursePlan/CoursePlanEdit");
                 Actions mouse = new Actions(driver);
@@ -161,9 +165,11 @@ public class BotRijal {
                 List<WebElement> successMsg = driver.findElements(By.xpath("//h3[text()='IRS berhasil tersimpan!']"));
                 if (!successMsg.isEmpty()) {
                     System.out.println("IRS berhasil tersimpan!");
+                    System.out.println("Jumlah retry: " + retry);
                     break; // Stop the loop since the IRS is successfully saved
                 } else {
                     System.out.println("IRS belum tersimpan. Melanjutkan pengisian IRS kembali.");
+                    retry++;
                     // ... Continue filling the form again ...
                 }
 
@@ -172,13 +178,13 @@ public class BotRijal {
                 System.out.println(successMsg);
                 if (!successMsg.isEmpty()) {
                     System.out.println("IRS berhasil tersimpan!");
+                    System.out.println("Jumlah retry: " + retry);
                     driver.navigate().to("https://academic.ui.ac.id/main/CoursePlan/CoursePlanViewSummary");
                     break; // Stop the loop since the IRS is successfully saved
                 } else {
                     System.out.println("IRS belum tersimpan. Melanjutkan pengisian IRS kembali.");
                     System.out.println(e);
-
-                    driver.navigate().to("https://academic.ui.ac.id/main/CoursePlan/CoursePlanEdit");
+                    retry++;
                 }
 
             }

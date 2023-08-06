@@ -1,4 +1,4 @@
-# BotRijal
+# SiakAutomation
 
 This Java program is a Selenium WebDriver-based bot designed to automate the process of filling the Individual Study Plan (IRS) form on the academic portal of the University of Indonesia (UI). The bot uses FirefoxDriver to interact with the web application.
 
@@ -40,7 +40,7 @@ password=your_password
 ```
 
 ## Usage
-Run the BotRijal class. The program will navigate to the UI academic portal, login using the credentials provided in the credentials.properties file, and then proceed to fill the IRS form with the course data provided in the matkul_data.json file. The program will keep retrying until it successfully saves the IRS form with the selected courses.
+Run the SiakAutomation class. The program will navigate to the UI academic portal, login using the credentials provided in the credentials.properties file, and then proceed to fill the IRS form with the course data provided in the matkul_data.json file. The program will keep retrying until it successfully saves the IRS form with the selected courses.
 ## Notes
 * Make sure you have the Firefox browser installed on your machine, as the bot uses FirefoxDriver to interact with the web application.
 * The program uses Selenium WebDriver's FirefoxDriver. If you prefer a different browser, you can replace it with a different driver, such as ChromeDriver or EdgeDriver, by changing the WebDriver driver = new FirefoxDriver(); line to the appropriate driver initialization.
