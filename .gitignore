@@ -1,0 +1,4 @@
+# Ignore files with specific names in any directory
+*credentials.properties
+*matkul_data.json
+*.DS_Store
