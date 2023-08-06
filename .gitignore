@@ -2,3 +2,4 @@
 *credentials.properties
 *matkul_data.json
 *.DS_Store
+out/
