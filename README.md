@@ -38,7 +38,7 @@ This Java program is a Selenium WebDriver-based bot designed to automate the pro
       }
     ]
     ```
-> To get the codes for each matkul, go to [this page in SIAK NG](https://duckduckgo.com) and hover your cursor above the desired matkul, your code should pop up.
+> To get the codes for each matkul, go to [this page in SIAK NG](https://duckduckgo.com) and hover your cursor above the desired matkul, your code should pop up.\
 > ![img.png](img.png)\
 > For the example above, the code is `725776-3`
 
